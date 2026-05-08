@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bacd7c1e4142a647afa160937503596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoardManager
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 1462051220}
   blackStonePrefab: {fileID: 8410577395591156114, guid: fb92f901bc5a0094888141d146e5710a, type: 3}
   whiteStonePrefab: {fileID: 9071558327136034305, guid: 1242188c2b2165b42a75314d99bc4143, type: 3}
   forbiddenMarkPrefab: {fileID: 4581337067841972380, guid: 09fdbcbcaa0d64945baf8ad1adfff6bb, type: 3}
@@ -4708,6 +4708,7 @@ RectTransform:
   m_Children:
   - {fileID: 1878279258}
   - {fileID: 1896239363}
+  - {fileID: 1552089182}
   m_Father: {fileID: 1175944635}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -6192,7 +6193,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 872797054}
-  - {fileID: 1552089182}
   - {fileID: 83295417}
   - {fileID: 1806254274}
   - {fileID: 563668500}
@@ -7048,7 +7048,7 @@ MonoBehaviour:
   aiManager: {fileID: 2051745647}
   boardManager: {fileID: 39612938}
   coinTossPanel: {fileID: 872797053}
-  matchingPanel: {fileID: 0}
+  matchingPanel: {fileID: 1247132496}
   videoPanelPlayer: {fileID: 570096813}
   uiManager: {fileID: 473597009}
   targetCamera: {fileID: 330585546}
@@ -7398,12 +7398,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1552089181}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1175944635}
+  m_Father: {fileID: 872797054}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10276,7 +10276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d21c87b981046db4289487a0901ad777, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyManager
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 1462051220}
   minRandomTime: 5
   maxRandomTime: 10
   returnDelay: 3

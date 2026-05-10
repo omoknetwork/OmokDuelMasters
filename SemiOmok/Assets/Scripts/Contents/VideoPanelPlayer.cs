@@ -219,7 +219,16 @@ public class VideoPanelPlayer : MonoBehaviour
     {
         // 타임스케일이 멈춰있을 수 있으니 원래대로 돌려놓습니다.
         Time.timeScale = 1f;
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.name);
+
+        // [NET][FIX] 직접 씬을 로드하지 않고, GameManager를 통해 양쪽 동의 하에 재시작하도록 요청합니다.
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.RequestRematch();
+        }
+        else
+        {
+            Scene currentScene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(currentScene.name);
+        }
     }
 }

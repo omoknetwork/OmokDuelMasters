@@ -84,6 +84,10 @@ namespace Assets.Scripts.Manager.Network
 
             if (gm != null) gm.InitializeGame();
 
+            // [NET][FIX] 상대방이 나가서 대기실로 돌아갈 때 선생님 기믹도 확실히 멈춥니다.
+            EnemyManager em = FindAnyObjectByType<EnemyManager>();
+            if (em != null) em.StopGimmick();
+
             BoardManager bm = FindAnyObjectByType<BoardManager>();
             if (bm != null) bm.ClearBoard();
 
@@ -236,7 +240,9 @@ namespace Assets.Scripts.Manager.Network
 
         private void StartGame()
         {
-            RaiseEventOptions options = new() { Receivers = ReceiverGroup.All, CachingOption = EventCaching.AddToRoomCache };
+            // [NET][FIX] CachingOption을 제거합니다. 이전 게임의 시작 이벤트가 룸 캐시에 남아있으면
+            // 새로 들어온 플레이어가 코인 토스를 건너뛰고 바로 게임 시작 상태가 되는 버그가 발생합니다.
+            RaiseEventOptions options = new() { Receivers = ReceiverGroup.All };
             PhotonNetwork.RaiseEvent(EVENT_START_GAME, null, options, SendOptions.SendReliable);
         }
 

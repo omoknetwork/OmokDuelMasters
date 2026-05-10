@@ -44,6 +44,10 @@ MonoBehaviour:
   - RPC_LookAtBoard
   - RPC_ReturnToOriginal
   - RPC_OnPlayerHit
+  - RPC_RequestRematch
+  - RPC_SyncEnemyState
+  - RPC_SyncHealth
+  - RPC_DeclineRematch
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

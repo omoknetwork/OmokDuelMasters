@@ -2644,7 +2644,7 @@ MonoBehaviour:
   loseClip: {fileID: 32900000, guid: 3b39ccccd0a1be64ead3e4319a0b64f5, type: 3}
   reactionVideoPlayer: {fileID: 1996986198}
   winReactionClip: {fileID: 0}
-  loseGomokuReactionClip: {fileID: 0}
+  loseGomokuReactionClip: {fileID: 32900000, guid: 46f549356b215b341b8fca2bf7aa35b4, type: 3}
   loseCaughtReactionClip: {fileID: 32900000, guid: 46f549356b215b341b8fca2bf7aa35b4, type: 3}
   resultBox: {fileID: 1537154934}
   reasonText: {fileID: 1297543588}
@@ -3280,6 +3280,8 @@ MonoBehaviour:
   isGameOver: 0
   isGameStarted: 0
   localPlayer: 1
+  localWantsRematch: 0
+  remoteWantsRematch: 0
   maxHealth: 5
   healthContentParent: {fileID: 181154850}
   normalChalkPrefab: {fileID: 8827272004114845721, guid: 8e2e5b455c4e15b4394770c18c17ac00, type: 3}
@@ -9680,6 +9682,7 @@ MonoBehaviour:
   teacherMaterial: {fileID: 2100000, guid: 9f65b6731ac09de45aaa366f0fc66b61, type: 2}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   dangerColor: {r: 1, g: 0, b: 0, a: 1}
+  originalEulerRotation: {x: -90, y: 0, z: 0}
 --- !u!65 &2082012264
 BoxCollider:
   m_ObjectHideFlags: 0

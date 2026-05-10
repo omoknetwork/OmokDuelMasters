@@ -10,8 +10,8 @@
  */
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 using UnityEngine.Playables;
+using UnityEngine.UI;
 
 public class TitleUIManager : MonoBehaviour
 {
@@ -42,16 +42,16 @@ public class TitleUIManager : MonoBehaviour
     [Header("Custom Cursor Settings")]
     [Tooltip("마우스 커서를 대신할 프리팹(Prefab)을 넣으세요. (UI Image 권장)")]
     public GameObject customCursorPrefab;
-    
+
     public bool hideDefaultCursor = true;
 
     [Tooltip("커서 위치 미세 조정용")]
     public Vector3 cursorOffset = Vector3.zero;
     public Vector3 cursorScale = Vector3.one;
     public Vector3 cursorRotation = Vector3.zero;
-    
+
     private RectTransform actualCursor;
-    private RectTransform cursorCanvasRect; 
+    private RectTransform cursorCanvasRect;
 
     private void Start()
     {
@@ -90,13 +90,13 @@ public class TitleUIManager : MonoBehaviour
         {
             GameObject cursorVirtualCanvasObj = new GameObject("Global_CursorCanvas");
             Canvas cCanvas = cursorVirtualCanvasObj.AddComponent<Canvas>();
-            cCanvas.renderMode = RenderMode.ScreenSpaceOverlay; 
-            cCanvas.sortingOrder = 32767; 
+            cCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            cCanvas.sortingOrder = 32767;
 
-            cursorVirtualCanvasObj.AddComponent<CanvasScaler>(); 
+            cursorVirtualCanvasObj.AddComponent<CanvasScaler>();
             GraphicRaycaster gr = cursorVirtualCanvasObj.AddComponent<GraphicRaycaster>();
-            gr.enabled = false; 
-            
+            gr.enabled = false;
+
             cursorCanvasRect = cursorVirtualCanvasObj.GetComponent<RectTransform>();
             GameObject spawnedCursor = Instantiate(customCursorPrefab, cursorCanvasRect);
             actualCursor = spawnedCursor.GetComponent<RectTransform>();
@@ -250,7 +250,7 @@ public class TitleUIManager : MonoBehaviour
             forwardTimeline.Stop();
             forwardTimeline.time = 0;
             forwardTimeline.Evaluate();
-            forwardTimeline.Play(); 
+            forwardTimeline.Play();
         }
     }
 

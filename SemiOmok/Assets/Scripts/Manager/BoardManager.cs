@@ -137,7 +137,7 @@ public class BoardManager : MonoBehaviour
             whiteStonePool.Enqueue(stone);
     }
 
-    private Vector3 GetWorldPosition(int x, int y, float localHeightOffset = 0f)
+    public Vector3 GetWorldPosition(int x, int y, float localHeightOffset = 0f)
     {
         Vector3 localPos = new(x * gridSizeX, localHeightOffset, y * gridSizeZ);
         return boardOrigin + Quaternion.Euler(boardRotation) * localPos;

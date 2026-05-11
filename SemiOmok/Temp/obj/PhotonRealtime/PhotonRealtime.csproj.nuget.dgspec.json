@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonRealtime.csproj": {}
+    "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonRealtime.csproj": {}
   },
   "projects": {
-    "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonRealtime.csproj": {
+    "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonRealtime.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonRealtime.csproj",
+        "projectUniqueName": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonRealtime.csproj",
         "projectName": "PhotonRealtime",
-        "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonRealtime.csproj",
+        "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonRealtime.csproj",
         "packagesPath": "C:\\Users\\strom\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\Temp\\obj\\PhotonRealtime\\",
+        "outputPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\Temp\\obj\\PhotonRealtime\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\strom\\AppData\\Roaming\\NuGet\\NuGet.Config",

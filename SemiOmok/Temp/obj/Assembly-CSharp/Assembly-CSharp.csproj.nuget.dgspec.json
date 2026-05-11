@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\strom\\Desktop\\SemiOmok\\Assembly-CSharp.csproj": {}
+    "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\Assembly-CSharp.csproj": {}
   },
   "projects": {
-    "c:\\Users\\strom\\Desktop\\SemiOmok\\Assembly-CSharp.csproj": {
+    "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\Assembly-CSharp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\strom\\Desktop\\SemiOmok\\Assembly-CSharp.csproj",
+        "projectUniqueName": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\Assembly-CSharp.csproj",
         "projectName": "Assembly-CSharp",
-        "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\Assembly-CSharp.csproj",
+        "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\Assembly-CSharp.csproj",
         "packagesPath": "C:\\Users\\strom\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\Temp\\obj\\Assembly-CSharp\\",
+        "outputPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\Temp\\obj\\Assembly-CSharp\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\strom\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,35 +28,35 @@
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonChat.csproj": {
-                "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonChat.csproj"
+              "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonChat.csproj": {
+                "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonChat.csproj"
               },
-              "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonRealtime.csproj": {
-                "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonRealtime.csproj"
+              "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonRealtime.csproj": {
+                "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonRealtime.csproj"
               },
-              "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.csproj": {
-                "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.csproj"
+              "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.csproj": {
+                "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.csproj"
               },
-              "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Demos.csproj": {
-                "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Demos.csproj"
+              "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Demos.csproj": {
+                "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Demos.csproj"
               },
-              "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Editor.csproj": {
-                "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Editor.csproj"
+              "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Editor.csproj": {
+                "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Editor.csproj"
               },
-              "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Utilities.csproj": {
-                "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Utilities.csproj"
+              "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Utilities.csproj": {
+                "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Utilities.csproj"
               },
-              "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Utilities.Culling.Editor.csproj": {
-                "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Utilities.Culling.Editor.csproj"
+              "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Utilities.Culling.Editor.csproj": {
+                "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Utilities.Culling.Editor.csproj"
               },
-              "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj": {
-                "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj"
+              "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj": {
+                "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj"
               },
-              "c:\\Users\\strom\\Desktop\\SemiOmok\\PunDemos.DemoHubEditor.csproj": {
-                "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PunDemos.DemoHubEditor.csproj"
+              "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PunDemos.DemoHubEditor.csproj": {
+                "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PunDemos.DemoHubEditor.csproj"
               },
-              "c:\\Users\\strom\\Desktop\\SemiOmok\\PunDemos.DemoSlotcarEditor.csproj": {
-                "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PunDemos.DemoSlotcarEditor.csproj"
+              "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PunDemos.DemoSlotcarEditor.csproj": {
+                "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PunDemos.DemoSlotcarEditor.csproj"
               }
             }
           }
@@ -91,14 +91,14 @@
         }
       }
     },
-    "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonChat.csproj": {
+    "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonChat.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonChat.csproj",
+        "projectUniqueName": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonChat.csproj",
         "projectName": "PhotonChat",
-        "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonChat.csproj",
+        "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonChat.csproj",
         "packagesPath": "C:\\Users\\strom\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\Temp\\obj\\PhotonChat\\",
+        "outputPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\Temp\\obj\\PhotonChat\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\strom\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -147,14 +147,14 @@
         }
       }
     },
-    "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonRealtime.csproj": {
+    "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonRealtime.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonRealtime.csproj",
+        "projectUniqueName": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonRealtime.csproj",
         "projectName": "PhotonRealtime",
-        "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonRealtime.csproj",
+        "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonRealtime.csproj",
         "packagesPath": "C:\\Users\\strom\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\Temp\\obj\\PhotonRealtime\\",
+        "outputPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\Temp\\obj\\PhotonRealtime\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\strom\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -203,14 +203,14 @@
         }
       }
     },
-    "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.csproj": {
+    "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.csproj",
+        "projectUniqueName": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.csproj",
         "projectName": "PhotonUnityNetworking",
-        "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.csproj",
+        "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.csproj",
         "packagesPath": "C:\\Users\\strom\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\Temp\\obj\\PhotonUnityNetworking\\",
+        "outputPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\Temp\\obj\\PhotonUnityNetworking\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\strom\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -227,8 +227,8 @@
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonRealtime.csproj": {
-                "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonRealtime.csproj"
+              "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonRealtime.csproj": {
+                "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonRealtime.csproj"
               }
             }
           }
@@ -263,14 +263,14 @@
         }
       }
     },
-    "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Demos.csproj": {
+    "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Demos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Demos.csproj",
+        "projectUniqueName": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Demos.csproj",
         "projectName": "PhotonUnityNetworking.Demos",
-        "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Demos.csproj",
+        "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Demos.csproj",
         "packagesPath": "C:\\Users\\strom\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\Temp\\obj\\PhotonUnityNetworking.Demos\\",
+        "outputPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\Temp\\obj\\PhotonUnityNetworking.Demos\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\strom\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -287,14 +287,14 @@
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonRealtime.csproj": {
-                "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonRealtime.csproj"
+              "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonRealtime.csproj": {
+                "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonRealtime.csproj"
               },
-              "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.csproj": {
-                "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.csproj"
+              "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.csproj": {
+                "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.csproj"
               },
-              "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Utilities.csproj": {
-                "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Utilities.csproj"
+              "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Utilities.csproj": {
+                "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Utilities.csproj"
               }
             }
           }
@@ -329,14 +329,14 @@
         }
       }
     },
-    "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Editor.csproj": {
+    "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Editor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Editor.csproj",
+        "projectUniqueName": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Editor.csproj",
         "projectName": "PhotonUnityNetworking.Editor",
-        "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Editor.csproj",
+        "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Editor.csproj",
         "packagesPath": "C:\\Users\\strom\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\Temp\\obj\\PhotonUnityNetworking.Editor\\",
+        "outputPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\Temp\\obj\\PhotonUnityNetworking.Editor\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\strom\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -353,11 +353,11 @@
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonRealtime.csproj": {
-                "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonRealtime.csproj"
+              "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonRealtime.csproj": {
+                "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonRealtime.csproj"
               },
-              "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.csproj": {
-                "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.csproj"
+              "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.csproj": {
+                "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.csproj"
               }
             }
           }
@@ -392,14 +392,14 @@
         }
       }
     },
-    "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Utilities.csproj": {
+    "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Utilities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Utilities.csproj",
+        "projectUniqueName": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Utilities.csproj",
         "projectName": "PhotonUnityNetworking.Utilities",
-        "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Utilities.csproj",
+        "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Utilities.csproj",
         "packagesPath": "C:\\Users\\strom\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\Temp\\obj\\PhotonUnityNetworking.Utilities\\",
+        "outputPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\Temp\\obj\\PhotonUnityNetworking.Utilities\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\strom\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -416,11 +416,11 @@
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonRealtime.csproj": {
-                "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonRealtime.csproj"
+              "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonRealtime.csproj": {
+                "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonRealtime.csproj"
               },
-              "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.csproj": {
-                "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.csproj"
+              "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.csproj": {
+                "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.csproj"
               }
             }
           }
@@ -455,14 +455,14 @@
         }
       }
     },
-    "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Utilities.Culling.Editor.csproj": {
+    "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Utilities.Culling.Editor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Utilities.Culling.Editor.csproj",
+        "projectUniqueName": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Utilities.Culling.Editor.csproj",
         "projectName": "PhotonUnityNetworking.Utilities.Culling.Editor",
-        "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Utilities.Culling.Editor.csproj",
+        "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Utilities.Culling.Editor.csproj",
         "packagesPath": "C:\\Users\\strom\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\Temp\\obj\\PhotonUnityNetworking.Utilities.Culling.Editor\\",
+        "outputPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\Temp\\obj\\PhotonUnityNetworking.Utilities.Culling.Editor\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\strom\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -479,8 +479,8 @@
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Utilities.csproj": {
-                "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Utilities.csproj"
+              "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Utilities.csproj": {
+                "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Utilities.csproj"
               }
             }
           }
@@ -515,14 +515,14 @@
         }
       }
     },
-    "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj": {
+    "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj",
+        "projectUniqueName": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj",
         "projectName": "PhotonUnityNetworking.Utilities.PhotonPlayer.Editor",
-        "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj",
+        "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj",
         "packagesPath": "C:\\Users\\strom\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\Temp\\obj\\PhotonUnityNetworking.Utilities.PhotonPlayer.Editor\\",
+        "outputPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\Temp\\obj\\PhotonUnityNetworking.Utilities.PhotonPlayer.Editor\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\strom\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -539,17 +539,17 @@
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonRealtime.csproj": {
-                "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonRealtime.csproj"
+              "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonRealtime.csproj": {
+                "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonRealtime.csproj"
               },
-              "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.csproj": {
-                "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.csproj"
+              "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.csproj": {
+                "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.csproj"
               },
-              "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Editor.csproj": {
-                "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Editor.csproj"
+              "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Editor.csproj": {
+                "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Editor.csproj"
               },
-              "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Utilities.csproj": {
-                "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Utilities.csproj"
+              "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Utilities.csproj": {
+                "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Utilities.csproj"
               }
             }
           }
@@ -584,14 +584,14 @@
         }
       }
     },
-    "c:\\Users\\strom\\Desktop\\SemiOmok\\PunDemos.DemoHubEditor.csproj": {
+    "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PunDemos.DemoHubEditor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\strom\\Desktop\\SemiOmok\\PunDemos.DemoHubEditor.csproj",
+        "projectUniqueName": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PunDemos.DemoHubEditor.csproj",
         "projectName": "PunDemos.DemoHubEditor",
-        "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PunDemos.DemoHubEditor.csproj",
+        "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PunDemos.DemoHubEditor.csproj",
         "packagesPath": "C:\\Users\\strom\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\Temp\\obj\\PunDemos.DemoHubEditor\\",
+        "outputPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\Temp\\obj\\PunDemos.DemoHubEditor\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\strom\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -608,11 +608,11 @@
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonRealtime.csproj": {
-                "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonRealtime.csproj"
+              "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonRealtime.csproj": {
+                "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonRealtime.csproj"
               },
-              "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.csproj": {
-                "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.csproj"
+              "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.csproj": {
+                "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.csproj"
               }
             }
           }
@@ -647,14 +647,14 @@
         }
       }
     },
-    "c:\\Users\\strom\\Desktop\\SemiOmok\\PunDemos.DemoSlotcarEditor.csproj": {
+    "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PunDemos.DemoSlotcarEditor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\strom\\Desktop\\SemiOmok\\PunDemos.DemoSlotcarEditor.csproj",
+        "projectUniqueName": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PunDemos.DemoSlotcarEditor.csproj",
         "projectName": "PunDemos.DemoSlotcarEditor",
-        "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PunDemos.DemoSlotcarEditor.csproj",
+        "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PunDemos.DemoSlotcarEditor.csproj",
         "packagesPath": "C:\\Users\\strom\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\Temp\\obj\\PunDemos.DemoSlotcarEditor\\",
+        "outputPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\Temp\\obj\\PunDemos.DemoSlotcarEditor\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\strom\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -671,8 +671,8 @@
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Demos.csproj": {
-                "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Demos.csproj"
+              "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Demos.csproj": {
+                "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Demos.csproj"
               }
             }
           }

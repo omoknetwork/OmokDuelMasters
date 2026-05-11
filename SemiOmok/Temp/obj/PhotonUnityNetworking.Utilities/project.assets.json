@@ -51,11 +51,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Utilities.csproj",
+      "projectUniqueName": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Utilities.csproj",
       "projectName": "PhotonUnityNetworking.Utilities",
-      "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Utilities.csproj",
+      "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Utilities.csproj",
       "packagesPath": "C:\\Users\\strom\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\Temp\\obj\\PhotonUnityNetworking.Utilities\\",
+      "outputPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\Temp\\obj\\PhotonUnityNetworking.Utilities\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\strom\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -72,11 +72,11 @@
         "netstandard2.1": {
           "targetAlias": "netstandard2.1",
           "projectReferences": {
-            "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonRealtime.csproj": {
-              "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonRealtime.csproj"
+            "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonRealtime.csproj": {
+              "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonRealtime.csproj"
             },
-            "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.csproj": {
-              "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.csproj"
+            "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.csproj": {
+              "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.csproj"
             }
           }
         }

@@ -89,11 +89,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\strom\\Desktop\\SemiOmok\\PunDemos.DemoSlotcarEditor.csproj",
+      "projectUniqueName": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PunDemos.DemoSlotcarEditor.csproj",
       "projectName": "PunDemos.DemoSlotcarEditor",
-      "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PunDemos.DemoSlotcarEditor.csproj",
+      "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PunDemos.DemoSlotcarEditor.csproj",
       "packagesPath": "C:\\Users\\strom\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\Temp\\obj\\PunDemos.DemoSlotcarEditor\\",
+      "outputPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\Temp\\obj\\PunDemos.DemoSlotcarEditor\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\strom\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -110,8 +110,8 @@
         "netstandard2.1": {
           "targetAlias": "netstandard2.1",
           "projectReferences": {
-            "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Demos.csproj": {
-              "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonUnityNetworking.Demos.csproj"
+            "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Demos.csproj": {
+              "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonUnityNetworking.Demos.csproj"
             }
           }
         }

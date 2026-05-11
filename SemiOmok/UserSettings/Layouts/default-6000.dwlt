@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1918.5002
     height: 1005.5001
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Hierarchy
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 112}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 0
-  controlID: 50
+  controlID: 117
   draggingID: 0
 --- !u!114 &10
 MonoBehaviour:
@@ -1394,9 +1394,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 6.7470016, y: 0.92900085, z: -2.4243}
+    m_Target: {x: 4.084228, y: 2.646317, z: -4.846587}
     speed: 2
-    m_Value: {x: 6.7470016, y: 0.92900085, z: -2.4243}
+    m_Value: {x: 4.084228, y: 2.646317, z: -4.846587}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1434,7 +1434,7 @@ MonoBehaviour:
       m_Fade:
         m_Target: 0
         speed: 2
-        m_Value: 0
+        m_Value: 1
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
       m_Size: {x: 1, y: 1}
@@ -1442,20 +1442,20 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.19678155, y: -0.6282285, z: 0.16850877, w: -0.733637}
+    m_Target: {x: 0.5773039, y: -0.045018196, z: 0.03190213, w: 0.8146668}
     speed: 2
-    m_Value: {x: -0.19678032, y: -0.6282246, z: 0.16850773, w: -0.73363245}
+    m_Value: {x: 0.5791336, y: -0.044946164, z: 0.03200324, w: 0.8133633}
   m_Size:
-    m_Target: 141.44304
+    m_Target: 0.11668539
     speed: 2
-    m_Value: 141.44304
+    m_Value: 0.10280651
   m_Ortho:
     m_Target: 0
     speed: 2
     m_Value: 0
   m_CameraSettings:
-    m_Speed: 1
-    m_SpeedNormalized: 0.5
+    m_Speed: 2
+    m_SpeedNormalized: 1
     m_SpeedMin: 0.001
     m_SpeedMax: 2
     m_EasingEnabled: 1
@@ -1527,56 +1527,38 @@ MonoBehaviour:
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -179836
-      - m_Data: -179424
-      - m_Data: -176456
-      - m_Data: -174406
-      - m_Data: -172056
-      - m_Data: -169106
-      - m_Data: -165728
-      - m_Data: -165316
-      - m_Data: -162348
-      - m_Data: -160298
-      - m_Data: -157948
-      - m_Data: -139308
-      - m_Data: -129784
-      - m_Data: -127384
-      - m_Data: -124864
-      - m_Data: -122490
-      - m_Data: -110966
-      - m_Data: -106424
-      - m_Data: -106026
-      - m_Data: -103048
-      - m_Data: -100988
-      - m_Data: -98630
-      - m_Data: -94722
-      - m_Data: -87326
-      - m_Data: -86914
-      - m_Data: -83938
-      - m_Data: -81880
-      - m_Data: -79522
-      - m_Data: -76422
+      - m_Data: -128120
+      - m_Data: -125696
+      - m_Data: -123270
+      - m_Data: -120374
+      - m_Data: -110880
+      - m_Data: -110482
+      - m_Data: -107508
+      - m_Data: -105452
+      - m_Data: -103098
+      - m_Data: -94208
+      - m_Data: -93796
+      - m_Data: -90828
+      - m_Data: -88776
+      - m_Data: -86426
+      - m_Data: -84938
+      - m_Data: -84540
+      - m_Data: -81572
+      - m_Data: -79520
+      - m_Data: -77170
       - m_Data: -72650
-      - m_Data: 99386
-      - m_Data: 101552
-      - m_Data: 101624
-      - m_Data: 117388
-      - m_Data: 128038
-      - m_Data: 130614
-      - m_Data: 131408
-      - m_Data: 145136
-      - m_Data: 170998
-      - m_Data: 172426
-      - m_Data: 172860
-      - m_Data: 173124
-      - m_Data: 174552
-      - m_Data: 175014
-      - m_Data: 175098
-      - m_Data: 175154
+      - m_Data: 150654
+      - m_Data: 150848
+      - m_Data: 152136
+      - m_Data: 152332
+      - m_Data: 153984
+      - m_Data: 154178
+      - m_Data: 155440
+      - m_Data: 155636
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Note
-        m_OriginalName: Note
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
@@ -1584,10 +1566,10 @@ MonoBehaviour:
           width: 0
           height: 0
         m_UserData:
-          m_Data: 131120
+          m_Data: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_TrimLeadingAndTrailingWhitespace: 0
         m_ClientGUIView: {fileID: 11}
@@ -1646,7 +1628,8 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SkipHidden: 1
     m_SearchArea: 1
-    m_Folders: []
+    m_Folders:
+    - Assets/Scenes
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1657,7 +1640,7 @@ MonoBehaviour:
   m_StartGridSize: 16
   m_LastFolders: []
   m_LastFoldersGridSize: 16
-  m_LastProjectPath: C:\Users\strom\Desktop\SemiOmok
+  m_LastProjectPath: C:\Users\strom\Desktop\Unity\SemiOmok_05_10\SemiOmok
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
@@ -1693,17 +1676,15 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 329}
+    scrollPos: {x: 0, y: 0}
     m_SelectedIDs: []
     m_LastClickedID:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 85962
-    - m_Data: 85964
     - m_Data: 85970
-    - m_Data: 126546
-    - m_Data: 126548
+    - m_Data: 85972
+    - m_Data: 85978
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

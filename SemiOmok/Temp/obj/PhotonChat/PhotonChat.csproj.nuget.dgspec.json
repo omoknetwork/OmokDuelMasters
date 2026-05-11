@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonChat.csproj": {}
+    "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonChat.csproj": {}
   },
   "projects": {
-    "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonChat.csproj": {
+    "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonChat.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonChat.csproj",
+        "projectUniqueName": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonChat.csproj",
         "projectName": "PhotonChat",
-        "projectPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\PhotonChat.csproj",
+        "projectPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\PhotonChat.csproj",
         "packagesPath": "C:\\Users\\strom\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\strom\\Desktop\\SemiOmok\\Temp\\obj\\PhotonChat\\",
+        "outputPath": "c:\\Users\\strom\\Desktop\\Unity\\SemiOmok_05_10\\SemiOmok\\Temp\\obj\\PhotonChat\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\strom\\AppData\\Roaming\\NuGet\\NuGet.Config",

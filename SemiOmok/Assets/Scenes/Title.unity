@@ -1071,13 +1071,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.084203154, y: 0.009272162, z: -0.0009809008, w: 0.99640507}
-  m_LocalPosition: {x: -0.5337393, y: 2.0688877, z: 1.1217718}
+  m_LocalRotation: {x: 0.010691093, y: -0.0029274551, z: 0.00038789085, w: -0.9999385}
+  m_LocalPosition: {x: -0.5885131, y: 1.496113, z: 1.144382}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 15.19543, y: 179.1417, z: 359.7827}
+  m_LocalEulerAnglesHint: {x: -1.225, y: 0.336, z: 359.952}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10624,6 +10624,7 @@ MonoBehaviour:
   teacherMaterial: {fileID: 2100000, guid: 9f65b6731ac09de45aaa366f0fc66b61, type: 2}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   dangerColor: {r: 1, g: 0, b: 0, a: 1}
+  originalEulerRotation: {x: -90, y: 0, z: 0}
 --- !u!1 &2088489489
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -383,6 +384,10 @@ public class GameManager : MonoBehaviour
         // [NET][FIX] 이전에 그려진 승리 선(빨간 줄) 삭제
         GameObject winLine = GameObject.Find("WinningRedLine");
         if (winLine != null) Destroy(winLine);
+
+        // [NET][FIX] CoinManager의 선택 상태도 리셋하여 다음 코인토스에서 정상 작동 보장
+        CoinManager cm = FindAnyObjectByType<CoinManager>();
+        if (cm != null) cm.ForceClosePanel();
 
         remainingTurnTime = turnTimeLimit; // 초기화 시 타이머 설정
     }
@@ -795,6 +800,10 @@ public class GameManager : MonoBehaviour
         if (localWantsRematch) return; // 이미 누름
 
         localWantsRematch = true;
+
+        // [NET][FIX] Photon Custom Property로 리매치 의사를 영구 기록 (씬 재로드에도 유지)
+        Hashtable props = new() { ["WantsRematch"] = true };
+        PhotonNetwork.LocalPlayer.SetCustomProperties(props);
         
         PhotonView pv = GetComponent<PhotonView>();
         if (pv != null)
@@ -822,13 +831,37 @@ public class GameManager : MonoBehaviour
             if (PhotonNetwork.IsMasterClient)
             {
                 Debug.Log("[GameManager] 양쪽 모두 동의! 게임을 재시작합니다.");
+
+                // [NET][FIX] 씬 로드 전 플래그를 리셋하여 중복 LoadLevel 호출 방지
+                localWantsRematch = false;
+                remoteWantsRematch = false;
+
+                // [NET][FIX] Room Property 정리 — 새 씬에서는 첫 매칭으로 인식되도록
+                Hashtable clearRoom = new() { ["NeedsRematch"] = false };
+                PhotonNetwork.CurrentRoom.SetCustomProperties(clearRoom);
+
                 PhotonNetwork.LoadLevel(SceneManager.GetActiveScene().name);
             }
         }
         else if (localWantsRematch)
         {
             Debug.Log("[GameManager] 상대방의 동의를 기다리는 중...");
-            // TODO: UI에 "상대방의 수락 대기 중..." 표시
+
+            // [NET][FIX] 결과 화면의 사유 텍스트를 대기 안내로 변경
+            if (videoPanelPlayer != null && videoPanelPlayer.reasonText != null)
+            {
+                videoPanelPlayer.reasonText.text = "상대방의 수락을 기다리는 중...";
+            }
+        }
+        else if (remoteWantsRematch)
+        {
+            Debug.Log("[GameManager] 상대방이 한판더를 원합니다. 내 선택을 기다리는 중...");
+
+            // [NET][FIX] 상대가 먼저 한판더를 눌렀을 때 결과 화면에 안내 표시
+            if (videoPanelPlayer != null && videoPanelPlayer.reasonText != null)
+            {
+                videoPanelPlayer.reasonText.text = "상대방이 한판더를 원합니다!";
+            }
         }
     }
 

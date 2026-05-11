@@ -223,7 +223,16 @@ public class VideoPanelPlayer : MonoBehaviour
         // [NET][FIX] 직접 씬을 로드하지 않고, GameManager를 통해 양쪽 동의 하에 재시작하도록 요청합니다.
         if (GameManager.Instance != null)
         {
+            // [NET][FIX] 이미 리매치 요청을 보낸 상태라면 중복 클릭을 무시합니다.
+            if (GameManager.Instance.localWantsRematch) return;
+
             GameManager.Instance.RequestRematch();
+
+            // [NET][FIX] 리매치 요청 후 대기 상태를 결과 화면에 안내합니다.
+            if (reasonText != null)
+            {
+                reasonText.text = "상대방의 수락을 기다리는 중...";
+            }
         }
         else
         {

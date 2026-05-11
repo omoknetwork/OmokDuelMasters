@@ -9676,8 +9676,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyManager
   gameManager: {fileID: 721713644}
-  minRandomTime: 5
-  maxRandomTime: 10
+  minRandomTime: 1
+  maxRandomTime: 2
   returnDelay: 3
   teacherMaterial: {fileID: 2100000, guid: 9f65b6731ac09de45aaa366f0fc66b61, type: 2}
   normalColor: {r: 1, g: 1, b: 1, a: 1}

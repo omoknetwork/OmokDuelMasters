@@ -36,6 +36,8 @@ public class EnemyManager : MonoBehaviourPun
     // URP 등에서 Base Map 색상에 접근하기 위한 프로퍼티 ID
     private readonly int baseColorId = Shader.PropertyToID("_BaseColor");
 
+    private Coroutine lookCoroutine; // [FIX] 특정 코루틴만 제어하기 위한 변수
+
     // [OPTIMIZE] 가비지 생성을 줄이기 위해 캐싱된 WaitForSeconds 사용
     private readonly WaitForSeconds waitOneSecond = new(1f);
     private readonly WaitForSeconds waitFiveSeconds = new(5f);
@@ -153,7 +155,9 @@ public class EnemyManager : MonoBehaviourPun
             }
             else
             {
-                yield return StartCoroutine(LookAtBoardRoutine(targetLookTime, warningDuration));
+                // [FIX] 코루틴 참조를 저장하여 선택적으로 중단할 수 있게 함
+                lookCoroutine = StartCoroutine(LookAtBoardRoutine(targetLookTime, warningDuration));
+                yield return lookCoroutine;
             }
 
             // 3. 선생님이 고개를 돌린 상태로 유지되는 시간 (인스펙터의 Return Delay 사용)
@@ -217,10 +221,12 @@ public class EnemyManager : MonoBehaviourPun
     private IEnumerator LookAtBoardRoutine(double targetTime, float totalDuration)
     {
         isGimmickActive = true;
-        
+
         // [NET][FIX] 오프라인(싱글) 모드와 온라인 모드 판정
+
         bool isOffline = !PhotonNetwork.IsConnectedAndReady || !PhotonNetwork.InRoom;
-        
+
+
         Debug.Log($"[EnemyManager] LookAtBoardRoutine 시작 - 모드: {(isOffline ? "싱글" : "멀티")}, 시간: {totalDuration}초");
 
         if (isOffline)
@@ -254,14 +260,16 @@ public class EnemyManager : MonoBehaviourPun
 
 
         Debug.Log($"[EnemyManager] 고개 돌림 완료 (Mode: {(PhotonNetwork.InRoom ? "Online" : "Offline")})");
+        lookCoroutine = null;
     }
 
     [PunRPC]
     private void RPC_LookAtBoard(double targetTime, float totalDuration)
     {
         Debug.Log($"[EnemyManager] RPC_LookAtBoard 수신 - Target: {targetTime}, Current: {PhotonNetwork.Time}");
-        // 마스터는 이미 EnemySequence에서 대기 중이므로 루틴만 실행
-        StartCoroutine(LookAtBoardRoutine(targetTime, totalDuration));
+        // [FIX] 이미 실행 중인 회전 루틴이 있다면 중단
+        if (lookCoroutine != null) StopCoroutine(lookCoroutine);
+        lookCoroutine = StartCoroutine(LookAtBoardRoutine(targetTime, totalDuration));
     }
 
     [PunRPC]
@@ -287,8 +295,12 @@ public class EnemyManager : MonoBehaviourPun
 
     private void ReturnToOriginal()
     {
-        // [NET][FIX] 회전 루틴이 진행 중이라면 중단하여 회전값이 꼬이지 않게 합니다.
-        StopAllCoroutines();
+        // [NET][FIX] 전체 코루틴이 아닌 회전 루틴만 중단하여 EnemySequence가 멈추지 않게 합니다.
+        if (lookCoroutine != null)
+        {
+            StopCoroutine(lookCoroutine);
+            lookCoroutine = null;
+        }
         isGimmickActive = false; // 동기화 보호 해제
 
         // 원래 방향으로 원상 복귀 및 색상을 다시 원래대로 즉시 초기화

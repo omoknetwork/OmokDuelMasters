@@ -12,6 +12,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -36,6 +37,10 @@ public class GameManager : MonoBehaviour
     public bool isGameStarted = false;
 
     public Player localPlayer = Player.None;
+    
+    [Header("Rematch State")]
+    public bool localWantsRematch = false;
+    public bool remoteWantsRematch = false;
 
     [Header("Health Settings (Chalks)")]
     [Tooltip("최대 체력 (기본 5)")]
@@ -132,6 +137,8 @@ public class GameManager : MonoBehaviour
         if (PhotonNetwork.InRoom && isMultiplayerScene)
         {
             currentMode = GameMode.MultiPlay;
+            // [NET][FIX] 마스터가 씬을 로드할 때 모든 클라이언트가 자동으로 따라오게 합니다.
+            PhotonNetwork.AutomaticallySyncScene = true;
         }
         else
         {
@@ -351,6 +358,36 @@ public class GameManager : MonoBehaviour
         currentHealth = maxHealth;
         InitializeHealthUI();
 
+        // [NET][FIX] UI 강제 초기화 (결과 화면 영상 스킵 및 매칭 패널 활성화)
+        if (videoPanelPlayer != null) videoPanelPlayer.SkipVideo();
+        if (matchingPanel != null) matchingPanel.SetActive(true);
+
+        // [NET][FIX] 재시작 시 한판더 상태 초기화
+        localWantsRematch = false;
+        remoteWantsRematch = false;
+
+        // [NET][FIX] 보드판 실제 오브젝트들도 삭제
+        if (boardManager != null)
+        {
+            boardManager.ClearBoard();
+        }
+        else
+        {
+            boardManager = FindAnyObjectByType<BoardManager>();
+            if (boardManager != null) boardManager.ClearBoard();
+        }
+
+        // [NET][FIX] 선생님 기믹 초기화
+        EnemyManager em = FindAnyObjectByType<EnemyManager>();
+        if (em != null) em.StopGimmick();
+
+        // [NET][FIX] 이전에 그려진 승리 선(빨간 줄) 삭제
+        GameObject winLine = GameObject.Find("WinningRedLine");
+        if (winLine != null) Destroy(winLine);
+
+        // [NET][FIX] CoinManager의 선택 상태도 리셋하여 다음 코인토스에서 정상 작동 보장
+        CoinManager cm = FindAnyObjectByType<CoinManager>();
+        if (cm != null) cm.ForceClosePanel();
 
         remainingTurnTime = turnTimeLimit; // 초기화 시 타이머 설정
     }
@@ -597,12 +634,10 @@ public class GameManager : MonoBehaviour
         lr.numCapVertices = 5;
         lr.numCornerVertices = 5;
 
-        System.Reflection.MethodInfo getWorldPosMethod = boardManager.GetType().GetMethod("GetWorldPosition", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-
-        if (getWorldPosMethod != null)
+        if (boardManager != null)
         {
-            Vector3 startWorldPos = (Vector3)getWorldPosMethod.Invoke(boardManager, new object[] { startX, startY, lineYOffset });
-            Vector3 endWorldPos = (Vector3)getWorldPosMethod.Invoke(boardManager, new object[] { endX, endY, lineYOffset });
+            Vector3 startWorldPos = boardManager.GetWorldPosition(startX, startY, lineYOffset);
+            Vector3 endWorldPos = boardManager.GetWorldPosition(endX, endY, lineYOffset);
 
             lr.SetPosition(0, startWorldPos);
             lr.SetPosition(1, endWorldPos);
@@ -611,7 +646,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("[GameManager] BoardManager의 GetWorldPosition 함수를 찾을 수 없습니다.");
+            Debug.LogWarning("[GameManager] BoardManager를 찾을 수 없거나 GetWorldPosition 함수를 호출할 수 없습니다.");
         }
     }
 
@@ -748,5 +783,143 @@ public class GameManager : MonoBehaviour
 
         Debug.Log($"[GameManager] 체력 고갈 종료 RPC 수신 - Winner: {winner}, IsWin: {isWin}");
         StartCoroutine(DelayGameOverRoutine(winner, isWin, reason));
+    }
+
+    // ==========================================
+    // ★ 한판더 (Rematch) 동기화 로직
+    // ==========================================
+
+    public void RequestRematch()
+    {
+        if (currentMode == GameMode.Local)
+        {
+            RestartScene();
+            return;
+        }
+
+        if (localWantsRematch) return; // 이미 누름
+
+        localWantsRematch = true;
+
+        // [NET][FIX] Photon Custom Property로 리매치 의사를 영구 기록 (씬 재로드에도 유지)
+        Hashtable props = new() { ["WantsRematch"] = true };
+        PhotonNetwork.LocalPlayer.SetCustomProperties(props);
+        
+        PhotonView pv = GetComponent<PhotonView>();
+        if (pv != null)
+        {
+            pv.RPC("RPC_RequestRematch", RpcTarget.Others);
+        }
+
+        CheckRematchCondition();
+    }
+
+    [PunRPC]
+    private void RPC_RequestRematch()
+    {
+        Debug.Log("[GameManager] 상대방이 한판더를 요청했습니다.");
+        remoteWantsRematch = true;
+        CheckRematchCondition();
+    }
+
+    private void CheckRematchCondition()
+    {
+        if (localWantsRematch && remoteWantsRematch)
+        {
+            // [NET][FIX] 양쪽 모두 동의했을 때만 마스터가 씬을 재로드합니다.
+            // AutomaticallySyncScene이 true이므로 모든 플레이어가 함께 이동합니다.
+            if (PhotonNetwork.IsMasterClient)
+            {
+                Debug.Log("[GameManager] 양쪽 모두 동의! 게임을 재시작합니다.");
+
+                // [NET][FIX] 씬 로드 전 플래그를 리셋하여 중복 LoadLevel 호출 방지
+                localWantsRematch = false;
+                remoteWantsRematch = false;
+
+                // [NET][FIX] Room Property 정리 — 새 씬에서는 첫 매칭으로 인식되도록
+                Hashtable clearRoom = new() { ["NeedsRematch"] = false };
+                PhotonNetwork.CurrentRoom.SetCustomProperties(clearRoom);
+
+                PhotonNetwork.LoadLevel(SceneManager.GetActiveScene().name);
+            }
+        }
+        else if (localWantsRematch)
+        {
+            Debug.Log("[GameManager] 상대방의 동의를 기다리는 중...");
+
+            // [NET][FIX] 결과 화면의 사유 텍스트를 대기 안내로 변경
+            if (videoPanelPlayer != null && videoPanelPlayer.reasonText != null)
+            {
+                videoPanelPlayer.reasonText.text = "상대방의 수락을 기다리는 중...";
+            }
+        }
+        else if (remoteWantsRematch)
+        {
+            Debug.Log("[GameManager] 상대방이 한판더를 원합니다. 내 선택을 기다리는 중...");
+
+            // [NET][FIX] 상대가 먼저 한판더를 눌렀을 때 결과 화면에 안내 표시
+            if (videoPanelPlayer != null && videoPanelPlayer.reasonText != null)
+            {
+                videoPanelPlayer.reasonText.text = "상대방이 한판더를 원합니다!";
+            }
+        }
+    }
+
+    public void DeclineRematch()
+    {
+        if (currentMode == GameMode.Local)
+        {
+            SceneManager.LoadScene("Title");
+            return;
+        }
+
+        // 상대방에게 거절 알림 전송
+        PhotonView pv = GetComponent<PhotonView>();
+        if (pv != null)
+        {
+            pv.RPC("RPC_DeclineRematch", RpcTarget.Others);
+        }
+
+        // 나는 바로 방을 나가서 타이틀로 이동
+        if (PhotonNetwork.InRoom) PhotonNetwork.LeaveRoom();
+        SceneManager.LoadScene("Title");
+    }
+
+    [PunRPC]
+    private void RPC_DeclineRematch()
+    {
+        Debug.Log("[GameManager] 상대방이 리매치를 거절했습니다. 새로운 상대를 대기합니다.");
+        
+        // [NET][FIX] 타이틀로 쫓겨나지 않고, 게임을 초기화하여 다시 매칭 대기 상태로 들어갑니다.
+        InitializeGame();
+        
+        // 이후 상대방이 실제로 방을 나가면 GameMatchingPanelManager의 OnPlayerLeftRoom이 호출되어 
+        // "상대방이 퇴장했습니다" 메시지와 함께 매칭이 재개됩니다.
+    }
+
+    // ==========================================
+    // ★ 중간 진입자 및 초기화 동기화 로직
+    // ==========================================
+
+    /// <summary>
+    /// [NET] 특정 플레이어에게 현재 게임의 상태(체력 등)를 전송합니다.
+    /// </summary>
+    public void SyncGameStateToPlayer(Photon.Realtime.Player targetPlayer)
+    {
+        if (!PhotonNetwork.IsMasterClient) return;
+
+        PhotonView pv = GetComponent<PhotonView>();
+        if (pv != null)
+        {
+            pv.RPC("RPC_SyncHealth", targetPlayer, currentHealth);
+        }
+    }
+
+    [PunRPC]
+    private void RPC_SyncHealth(int syncedHealth)
+    {
+        Debug.Log($"[GameManager] 체력 동기화 수신: {syncedHealth}");
+        currentHealth = syncedHealth;
+        InitializeHealthUI(); // UI 갱신
     }
 }

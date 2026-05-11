@@ -27,17 +27,29 @@ public class EnemyManager : MonoBehaviourPun
     public Color normalColor = Color.white;
     public Color dangerColor = Color.red;
 
+    [Header("Rotation Settings")]
+    [SerializeField] private Vector3 originalEulerRotation = new Vector3(-90f, 0f, 0f);
     private Quaternion originalRotation;
     private bool hasStartedSequence = false;
+    private bool isGimmickActive = false; // [NET] 기믹 진행 중 주기적 동기화 방지용
 
     // URP 등에서 Base Map 색상에 접근하기 위한 프로퍼티 ID
     private readonly int baseColorId = Shader.PropertyToID("_BaseColor");
 
+    private Coroutine lookCoroutine; // [FIX] 특정 코루틴만 제어하기 위한 변수
+
+    // [OPTIMIZE] 가비지 생성을 줄이기 위해 캐싱된 WaitForSeconds 사용
+    private readonly WaitForSeconds waitOneSecond = new(1f);
+    private readonly WaitForSeconds waitFiveSeconds = new(5f);
+
+    private void Awake()
+    {
+        // [FIX] 다른 매니저들이 Start()에서 호출하기 전에 미리 회전값을 계산해둡니다.
+        originalRotation = Quaternion.Euler(originalEulerRotation);
+    }
+
     void Start()
     {
-        // 시작할 때의 초기 회전값을 저장해 둡니다.
-        originalRotation = transform.rotation;
-
         // 초기 Base Map 색상을 하얀색(normalColor)으로 맞춰줍니다.
         if (teacherMaterial != null)
         {
@@ -53,12 +65,29 @@ public class EnemyManager : MonoBehaviourPun
         // 게임 시작 시 동작하지 않고, 돌이 놓일 때 이벤트를 듣도록 대기합니다.
         if (gameManager != null)
         {
+            gameManager.OnStonePlaced -= HandleFirstStonePlaced; // 중복 방지
             gameManager.OnStonePlaced += HandleFirstStonePlaced;
         }
         else
         {
-            // 매니저가 없다면 그냥 바로 시작
-            StartCoroutine(EnemySequence());
+            Debug.LogWarning("[EnemyManager] GameManager를 찾을 수 없습니다. 돌이 놓일 때까지 대기합니다.");
+            // 0.5초마다 GameManager를 찾아보는 코루틴 시작
+            StartCoroutine(WaitAndFindGameManager());
+        }
+    }
+
+    private IEnumerator WaitAndFindGameManager()
+    {
+        while (gameManager == null)
+        {
+            gameManager = FindAnyObjectByType<GameManager>();
+            if (gameManager != null)
+            {
+                gameManager.OnStonePlaced -= HandleFirstStonePlaced;
+                gameManager.OnStonePlaced += HandleFirstStonePlaced;
+                yield break;
+            }
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
@@ -84,33 +113,55 @@ public class EnemyManager : MonoBehaviourPun
 
     private IEnumerator EnemySequence()
     {
-        // 무한루프를 돌며 시퀀스를 반복합니다.
         while (true)
         {
-            // 1. 마스터 클라이언트만 타이밍(Random.Range)을 결정합니다.
-            // (PhotonView가 있고 네트워크에 연결된 경우에만 동기화 로직 작동)
+            // 0. 게임 상태 체크 및 대기
+            if (gameManager != null)
+            {
+                // 게임이 아직 시작되지 않았다면 시작될 때까지 기다립니다. (종료하지 않음)
+                while (!gameManager.isGameStarted && !gameManager.isGameOver)
+                {
+                    Debug.Log("[EnemyManager] 게임 시작 대기 중...");
+                    yield return waitOneSecond;
+                }
+
+                // 게임이 완전히 종료되었다면 기믹 중단
+                if (gameManager.isGameOver)
+                {
+                    StopGimmick();
+                    yield break;
+                }
+            }
+
+            // [NET] 마스터 클라이언트만 타이밍을 주도합니다.
             if (PhotonNetwork.IsConnected && PhotonNetwork.InRoom && photonView != null && !PhotonNetwork.IsMasterClient)
             {
-                // 마스터가 아닐 경우 루프를 돌지 않고 대기 (RPC를 통해 동작을 수신함)
-                yield return new WaitForSeconds(1f);
+                yield return waitOneSecond;
                 continue;
             }
 
-            float randomWaitTime = Random.Range(minRandomTime, maxRandomTime);
+            // 1. 랜덤한 시간 동안 평화롭게 대기 (인스펙터의 Min/Max Random Time 사용)
+            float idleTime = Random.Range(minRandomTime, maxRandomTime);
+            Debug.Log($"[EnemyManager] 다음 감시까지 대기: {idleTime}초");
+            yield return new WaitForSeconds(idleTime);
 
-            // 2. 모든 클라이언트에 시퀀스 시작(경고 및 돌아보기) 알림
+            // 2. 감시 예고 (짧은 경고 시간 - 1.5초)
+            float warningDuration = 1.5f;
+            double targetLookTime = PhotonNetwork.Time + (double)warningDuration;
+
             if (PhotonNetwork.IsConnected && PhotonNetwork.InRoom && photonView != null)
             {
-                photonView.RPC("RPC_LookAtBoard", RpcTarget.All, randomWaitTime);
+                photonView.RPC("RPC_LookAtBoard", RpcTarget.All, targetLookTime, warningDuration);
             }
             else
             {
-                // 로컬 모드 혹은 PhotonView가 없는 경우 각자 실행 (이전 코드 방식)
-                yield return StartCoroutine(LookAtBoardRoutine(randomWaitTime));
+                // [FIX] 코루틴 참조를 저장하여 선택적으로 중단할 수 있게 함
+                lookCoroutine = StartCoroutine(LookAtBoardRoutine(targetLookTime, warningDuration));
+                yield return lookCoroutine;
             }
 
-            // 3. 시퀀스 유지 시간 대기 (랜덤 시간 + 회전 유지 시간)
-            yield return new WaitForSeconds(randomWaitTime + returnDelay);
+            // 3. 선생님이 고개를 돌린 상태로 유지되는 시간 (인스펙터의 Return Delay 사용)
+            yield return new WaitForSeconds(warningDuration + returnDelay);
 
             // 4. 원상 복귀 알림
             if (PhotonNetwork.IsConnected && PhotonNetwork.InRoom && photonView != null)
@@ -122,16 +173,103 @@ public class EnemyManager : MonoBehaviourPun
                 ReturnToOriginal();
             }
 
-            // 5. 5초 대기(휴식) 후 시퀀스 재시작
-            yield return new WaitForSeconds(5f);
+            // 5. 시퀀스 종료 후 짧은 휴식
+            yield return waitFiveSeconds;
         }
     }
 
-    [PunRPC]
-    private void RPC_LookAtBoard(float randomWaitTime)
+    /// <summary>
+    /// 선생님의 감시 기믹을 즉시 중단하고 초기 상태로 되돌립니다.
+    /// [NET][FIX] 상대방이 퇴장하거나 게임이 완전히 종료되었을 때 호출해야 합니다.
+    /// </summary>
+    public void StopGimmick()
     {
-        // 마스터는 이미 EnemySequence에서 대기 중이므로 루틴만 실행 (All로 보냈으므로 자신도 실행)
-        StartCoroutine(LookAtBoardRoutine(randomWaitTime));
+        StopAllCoroutines();
+        hasStartedSequence = false;
+        ReturnToOriginal();
+
+        // 다시 첫 돌이 놓일 때를 기다리도록 이벤트 재연결
+        if (gameManager != null)
+        {
+            gameManager.OnStonePlaced -= HandleFirstStonePlaced; // 중복 방지
+            gameManager.OnStonePlaced += HandleFirstStonePlaced;
+        }
+
+        Debug.Log("[EnemyManager] Gimmick Stopped and Reset.");
+    }
+
+    private void SetTeacherColor(Color color)
+    {
+        if (teacherMaterial == null) return;
+
+        // URP 표준(_BaseColor) 또는 레거시/표준(_Color) 프로퍼티 중 존재하는 곳에 적용합니다.
+        if (teacherMaterial.HasProperty("_BaseColor"))
+        {
+            teacherMaterial.SetColor("_BaseColor", color);
+        }
+        else if (teacherMaterial.HasProperty("_Color"))
+        {
+            teacherMaterial.SetColor("_Color", color);
+        }
+        else
+        {
+            // 둘 다 없다면 유니티 기본 color 속성 변경을 시도합니다.
+            teacherMaterial.color = color;
+        }
+    }
+
+    private IEnumerator LookAtBoardRoutine(double targetTime, float totalDuration)
+    {
+        isGimmickActive = true;
+
+        // [NET][FIX] 오프라인(싱글) 모드와 온라인 모드 판정
+
+        bool isOffline = !PhotonNetwork.IsConnectedAndReady || !PhotonNetwork.InRoom;
+
+
+        Debug.Log($"[EnemyManager] LookAtBoardRoutine 시작 - 모드: {(isOffline ? "싱글" : "멀티")}, 시간: {totalDuration}초");
+
+        if (isOffline)
+        {
+            // --- 1. 싱글 플레이 (오프라인) ---
+            float elapsed = 0f;
+            while (elapsed < totalDuration)
+            {
+                elapsed += Time.deltaTime;
+                float t = Mathf.Clamp01(elapsed / totalDuration);
+                SetTeacherColor(Color.Lerp(normalColor, dangerColor, t));
+                yield return null;
+            }
+        }
+        else
+        {
+            // --- 2. 멀티 플레이 (온라인) ---
+            while (PhotonNetwork.Time < targetTime)
+            {
+                double remainingTime = targetTime - PhotonNetwork.Time;
+                float t = 1.0f - (float)(remainingTime / (double)totalDuration);
+                SetTeacherColor(Color.Lerp(normalColor, dangerColor, Mathf.Clamp01(t)));
+                yield return null;
+            }
+        }
+
+        // 정확한 목표 시점에 고개 회전 및 색상 고정
+        Vector3 targetRot = new(originalEulerRotation.x, originalEulerRotation.y, 180f);
+        transform.rotation = Quaternion.Euler(targetRot);
+        SetTeacherColor(dangerColor);
+
+
+        Debug.Log($"[EnemyManager] 고개 돌림 완료 (Mode: {(PhotonNetwork.InRoom ? "Online" : "Offline")})");
+        lookCoroutine = null;
+    }
+
+    [PunRPC]
+    private void RPC_LookAtBoard(double targetTime, float totalDuration)
+    {
+        Debug.Log($"[EnemyManager] RPC_LookAtBoard 수신 - Target: {targetTime}, Current: {PhotonNetwork.Time}");
+        // [FIX] 이미 실행 중인 회전 루틴이 있다면 중단
+        if (lookCoroutine != null) StopCoroutine(lookCoroutine);
+        lookCoroutine = StartCoroutine(LookAtBoardRoutine(targetTime, totalDuration));
     }
 
     [PunRPC]
@@ -140,36 +278,37 @@ public class EnemyManager : MonoBehaviourPun
         ReturnToOriginal();
     }
 
-    private IEnumerator LookAtBoardRoutine(float randomWaitTime)
+    /// <summary>
+    /// [NET][FIX] 새로운 플레이어가 들어왔을 때 현재 선생님의 상태(회전, 색상)를 동기화합니다.
+    /// </summary>
+    [PunRPC]
+    private void RPC_SyncEnemyState(Quaternion currentRotation, Color currentColor)
     {
-        // 지정된 시간 동안 기다리면서 매 프레임 머티리얼 색상을 붉게 물들입니다.
-        float elapsedTime = 0f;
-        while (elapsedTime < randomWaitTime)
+        if (PhotonNetwork.IsMasterClient) return; // 마스터는 동기화 주체이므로 무시
+
+        transform.rotation = currentRotation;
+        if (teacherMaterial != null)
         {
-            elapsedTime += Time.deltaTime;
-            float lerpFactor = elapsedTime / randomWaitTime;
-
-            if (teacherMaterial != null)
-            {
-                Color lerpedColor = Color.Lerp(normalColor, dangerColor, lerpFactor);
-                teacherMaterial.SetColor(baseColorId, lerpedColor);
-            }
-
-            yield return null;
+            teacherMaterial.SetColor(baseColorId, currentColor);
         }
-
-        // 돌아보기 (이전 코드와 동일하게 Z축 180도로 복구)
-        transform.rotation = originalRotation * Quaternion.Euler(0, 0, 180f);
     }
 
     private void ReturnToOriginal()
     {
-        // 원래 방향으로 원상 복귀 및 색상을 다시 원래대로 즉시 초기화
-        transform.rotation = originalRotation;
-        if (teacherMaterial != null)
+        // [NET][FIX] 전체 코루틴이 아닌 회전 루틴만 중단하여 EnemySequence가 멈추지 않게 합니다.
+        if (lookCoroutine != null)
         {
-            teacherMaterial.SetColor(baseColorId, normalColor);
+            StopCoroutine(lookCoroutine);
+            lookCoroutine = null;
         }
+        isGimmickActive = false; // 동기화 보호 해제
+
+        // 원래 방향으로 원상 복귀 및 색상을 다시 원래대로 즉시 초기화
+        transform.rotation = Quaternion.Euler(originalEulerRotation);
+        SetTeacherColor(normalColor);
+
+
+        Debug.Log($"[EnemyManager] 원래대로 복구 완료");
     }
 
     // ★ 중요: 유니티 에디터 환경에서 플레이를 껐을 때 머티리얼 원본 파일이 빨간색으로 고정되는 것을 막아줍니다.
@@ -184,6 +323,23 @@ public class EnemyManager : MonoBehaviourPun
         if (teacherMaterial != null)
         {
             teacherMaterial.SetColor(baseColorId, normalColor);
+        }
+    }
+
+    private void Update()
+    {
+        // 마스터 클라이언트인 경우 주기적으로 선생님의 상태를 동기화 (기믹 작동 중에는 제외)
+        if (!isGimmickActive && PhotonNetwork.IsConnected && PhotonNetwork.InRoom && PhotonNetwork.IsMasterClient && photonView != null)
+        {
+            if (Time.frameCount % 60 == 0) // 약 1초마다 동기화
+            {
+                Color currentColor = normalColor;
+                if (teacherMaterial != null && teacherMaterial.HasProperty(baseColorId))
+                {
+                    currentColor = teacherMaterial.GetColor(baseColorId);
+                }
+                photonView.RPC("RPC_SyncEnemyState", RpcTarget.Others, transform.rotation, currentColor);
+            }
         }
     }
 }

@@ -7,11 +7,14 @@
  * 5. 게임 종료 함수 추가: QuitGame() 
  * 6. 커서 전용 독립 Overlay 캔버스 자동 생성 및 Raycast 차단 문제 해결
  * 7. 타임라인(PlayableDirector) 2개(정방향/역방향용) 분리 적용 
+ * 8. 비디오 동시 재생 제어 함수 추가: PlayAllVideos() 버튼 클릭 시 다수의 비디오를 켜고, 끝나면 패널 닫기
+ * 9. 버튼 매핑 수정: 4번째 버튼 클릭 시 역방향 타임라인(BackwardTimeline) 재생 기능 연결
  */
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 using UnityEngine.Playables;
+using UnityEngine.UI;
+using UnityEngine.Video; // VideoPlayer 사용
 
 public class TitleUIManager : MonoBehaviour
 {
@@ -42,16 +45,23 @@ public class TitleUIManager : MonoBehaviour
     [Header("Custom Cursor Settings")]
     [Tooltip("마우스 커서를 대신할 프리팹(Prefab)을 넣으세요. (UI Image 권장)")]
     public GameObject customCursorPrefab;
-    
+
     public bool hideDefaultCursor = true;
 
     [Tooltip("커서 위치 미세 조정용")]
     public Vector3 cursorOffset = Vector3.zero;
     public Vector3 cursorScale = Vector3.one;
     public Vector3 cursorRotation = Vector3.zero;
-    
+
     private RectTransform actualCursor;
-    private RectTransform cursorCanvasRect; 
+    private RectTransform cursorCanvasRect;
+
+    [Header("Multi-Video Playback Settings")]
+    [Tooltip("버튼 클릭 시 일괄적으로 활성화하고 보여줄 RawImage 패널들(부모 포함 가능)을 연결하세요.")]
+    public GameObject[] videoPanels;
+    [Tooltip("재생할 비디오 플레이어들을 연결하세요. (모두 종료되어야 패널이 꺼집니다)")]
+    public VideoPlayer[] videoPlayers;
+    private int finishedVideoCount = 0; // 종료된 비디오 개수 카운트용
 
     private void Start()
     {
@@ -81,6 +91,18 @@ public class TitleUIManager : MonoBehaviour
         if (rulePanel != null)
             rulePanel.SetActive(false);
 
+        // 비디오 초기화 (패널 끄기 및 자동 재생 방지, 종료 이벤트 연결)
+        SetVideoPanelsActive(false);
+        foreach (VideoPlayer vp in videoPlayers)
+        {
+            if (vp != null)
+            {
+                vp.playOnAwake = false;
+                vp.isLooping = false; // 끝나면 이벤트를 발생시키기 위해 루프 해제
+                vp.loopPointReached += OnAnyVideoFinished;
+            }
+        }
+
         if (hideDefaultCursor)
         {
             Cursor.visible = false;
@@ -90,13 +112,13 @@ public class TitleUIManager : MonoBehaviour
         {
             GameObject cursorVirtualCanvasObj = new GameObject("Global_CursorCanvas");
             Canvas cCanvas = cursorVirtualCanvasObj.AddComponent<Canvas>();
-            cCanvas.renderMode = RenderMode.ScreenSpaceOverlay; 
-            cCanvas.sortingOrder = 32767; 
+            cCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            cCanvas.sortingOrder = 32767;
 
-            cursorVirtualCanvasObj.AddComponent<CanvasScaler>(); 
+            cursorVirtualCanvasObj.AddComponent<CanvasScaler>();
             GraphicRaycaster gr = cursorVirtualCanvasObj.AddComponent<GraphicRaycaster>();
-            gr.enabled = false; 
-            
+            gr.enabled = false;
+
             cursorCanvasRect = cursorVirtualCanvasObj.GetComponent<RectTransform>();
             GameObject spawnedCursor = Instantiate(customCursorPrefab, cursorCanvasRect);
             actualCursor = spawnedCursor.GetComponent<RectTransform>();
@@ -144,9 +166,9 @@ public class TitleUIManager : MonoBehaviour
         if (btn == null)
         {
             btn = btnObj.AddComponent<Button>();
-            if (btnObj.GetComponent<UnityEngine.UI.Image>() == null)
+            if (btnObj.GetComponent<Image>() == null)
             {
-                var img = btnObj.AddComponent<UnityEngine.UI.Image>();
+                var img = btnObj.AddComponent<Image>();
                 img.color = new Color(0, 0, 0, 0);
             }
         }
@@ -199,7 +221,8 @@ public class TitleUIManager : MonoBehaviour
         }
         else if (titleButtons.Length > 3 && btnObj == titleButtons[3])
         {
-            Debug.Log("[TitleUI] 4th Button Clicked (Inspector Link Only)");
+            Debug.Log("[TitleUI] 4th Button Clicked (Play Backward Timeline)");
+            PlayTimelineForward();
         }
     }
 
@@ -237,12 +260,69 @@ public class TitleUIManager : MonoBehaviour
     }
 
     // ===============================================
+    // ★ 멀티 비디오 동시 재생 제어
+    // ===============================================
+    
+    /// <summary>
+    /// UI의 OnClick이나 다른 스크립트에서 호출하여 4개의 비디오를 일괄 재생합니다.
+    /// </summary>
+    public void PlayAllVideos()
+    {
+        if (videoPlayers == null || videoPlayers.Length == 0) return;
+
+        finishedVideoCount = 0; // 재생을 시작할 때 카운트 초기화
+        
+        // 1. 패널들 활성화
+        SetVideoPanelsActive(true);
+
+        // 2. 비디오 재생
+        foreach (VideoPlayer vp in videoPlayers)
+        {
+            if (vp != null)
+            {
+                vp.Stop();
+                vp.Play();
+            }
+            else
+            {
+                // 플레이어가 비어있더라도 종료 카운트는 올려주어야 멈춤 현상(무한 대기)이 안 생깁니다.
+                finishedVideoCount++;
+            }
+        }
+        Debug.Log("[TitleUI] Play All Videos Started.");
+    }
+
+    /// <summary>
+    /// 개별 비디오가 끝날 때마다 호출됩니다 (반복 횟수가 다를 수 있으므로 카운트).
+    /// </summary>
+    private void OnAnyVideoFinished(VideoPlayer vp)
+    {
+        finishedVideoCount++;
+
+        // 작동 중인 전체 비디오의 갯수만큼 종료 이벤트가 누적되면 패널을 일괄 끕니다.
+        if (finishedVideoCount >= videoPlayers.Length)
+        {
+            SetVideoPanelsActive(false);
+            Debug.Log("[TitleUI] All Videos Finished. Panels Disabled.");
+        }
+    }
+
+    private void SetVideoPanelsActive(bool isActive)
+    {
+        if (videoPanels != null)
+        {
+            foreach (GameObject panel in videoPanels)
+            {
+                if (panel != null)
+                    panel.SetActive(isActive);
+            }
+        }
+    }
+
+    // ===============================================
     // ★ 2개의 타임라인 제어
     // ===============================================
 
-    /// <summary>
-    /// 첫 번째 타임라인을 강제로 처음부터 재생합니다. (주로 열 때 사용)
-    /// </summary>
     public void PlayTimelineForward()
     {
         if (forwardTimeline != null)
@@ -250,13 +330,10 @@ public class TitleUIManager : MonoBehaviour
             forwardTimeline.Stop();
             forwardTimeline.time = 0;
             forwardTimeline.Evaluate();
-            forwardTimeline.Play(); 
+            forwardTimeline.Play();
         }
     }
 
-    /// <summary>
-    /// 두 번째 타임라인을 강제로 처음부터 재생합니다. (주로 닫을 때 사용)
-    /// </summary>
     public void PlayTimelineBackward()
     {
         if (backwardTimeline != null)

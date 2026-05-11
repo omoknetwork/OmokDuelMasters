@@ -76,6 +76,9 @@ namespace Assets.Scripts.Manager.Network
             if (PhotonNetwork.IsMasterClient)
             {
                 SyncBoardStateToPlayer(newPlayer);
+                
+                // [NET][FIX] 추가적인 게임 상태(체력 등) 동기화
+                if (gameManager != null) gameManager.SyncGameStateToPlayer(newPlayer);
             }
         }
 

@@ -780,7 +780,7 @@ public class GameManager : MonoBehaviour
 
         bool isWin = (loser != localPlayer);
         Player winner = (loser == Player.Black) ? Player.White : Player.Black;
-        string reason = isWin ? "상대방이 발각되어 당신이 승리했습니다!" : "선생님에게 발각되어 체력이 바닥났습니다...";
+        string reason = isWin ? "상대방이 발각되어\n 당신이 승리했습니다!" : "선생님에게 발각되어\n 체력이 바닥났습니다...";
 
         Debug.Log($"[GameManager] 체력 고갈 종료 RPC 수신 - Winner: {winner}, IsWin: {isWin}");
         StartCoroutine(DelayGameOverRoutine(winner, isWin, reason));

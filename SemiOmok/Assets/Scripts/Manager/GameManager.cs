@@ -12,9 +12,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
-using Hashtable = ExitGames.Client.Photon.Hashtable;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 [RequireComponent(typeof(PhotonView))]
 public class GameManager : MonoBehaviour
@@ -37,7 +37,8 @@ public class GameManager : MonoBehaviour
     public bool isGameStarted = false;
 
     public Player localPlayer = Player.None;
-    
+
+
     [Header("Rematch State")]
     public bool localWantsRematch = false;
     public bool remoteWantsRematch = false;
@@ -246,8 +247,8 @@ public class GameManager : MonoBehaviour
     {
         remainingTurnTime -= Time.deltaTime;
 
-        // 내 차례인지 확인
-        bool isMyTurn = (currentPlayer == localPlayer);
+        // [NET/FIX] 싱글 플레이(Local)이거나 멀티플레이에서 내 차례인 경우에만 타이머 활성화
+        bool isMyTurn = (currentMode == GameMode.Local) || (currentPlayer == localPlayer);
 
         if (timerText != null)
         {
@@ -804,7 +805,8 @@ public class GameManager : MonoBehaviour
         // [NET][FIX] Photon Custom Property로 리매치 의사를 영구 기록 (씬 재로드에도 유지)
         Hashtable props = new() { ["WantsRematch"] = true };
         PhotonNetwork.LocalPlayer.SetCustomProperties(props);
-        
+
+
         PhotonView pv = GetComponent<PhotonView>();
         if (pv != null)
         {
@@ -889,12 +891,14 @@ public class GameManager : MonoBehaviour
     private void RPC_DeclineRematch()
     {
         Debug.Log("[GameManager] 상대방이 리매치를 거절했습니다. 새로운 상대를 대기합니다.");
-        
+
         // [NET][FIX] 타이틀로 쫓겨나지 않고, 게임을 초기화하여 다시 매칭 대기 상태로 들어갑니다.
+
         InitializeGame();
-        
+
         // 이후 상대방이 실제로 방을 나가면 GameMatchingPanelManager의 OnPlayerLeftRoom이 호출되어 
         // "상대방이 퇴장했습니다" 메시지와 함께 매칭이 재개됩니다.
+
     }
 
     // ==========================================

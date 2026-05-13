@@ -9,7 +9,7 @@ Team Omok은 Photon PUN2를 활용하여 제작한 실시간 멀티플레이 오
 
 ## 🎬 시연 영상
 
-[![시연 영상](https://youtu.be/유튜브영상ID)
+[시연 영상](https://youtu.be/유튜브영상ID)
 
 ---
 

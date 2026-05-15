@@ -17,7 +17,7 @@ Team Omok은 Photon PUN2를 활용하여 제작한 실시간 멀티플레이 오
 
 | 타이틀 | 매칭 | 코인토스 |
 |---|---|---|
-| <img src="https://github.com/user-attachments/assets/c6e0fd2f-e340-44a5-9157-710888dd35ec" width="300"> | <img src="" width="300"> | <img src="" width="300"> |
+| <img src="https://github.com/user-attachments/assets/c6e0fd2f-e340-44a5-9157-710888dd35ec" width="500"> | <img src="" width="300"> | <img src="" width="300"> |
 
 | 인게임 | 금수 표시 | 결과 화면 |
 |---|---|---|

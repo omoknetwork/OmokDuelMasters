@@ -21,7 +21,7 @@ Team Omok은 Photon PUN2를 활용하여 제작한 실시간 멀티플레이 오
 
 | 인게임 | 금수 표시 | 결과 화면 |
 |---|---|---|
-| <img src="" width="300"> | <img src="" width="300"> | <img src="" width="300"> |
+| <img src="" width="300"> | <img src="https://github.com/user-attachments/assets/f1b27033-42e6-4a35-a184-d8c1f9cb9032" width="300"> | <img src="" width="300"> |
 
 ---
 
